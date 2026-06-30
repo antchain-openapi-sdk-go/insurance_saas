@@ -9,9 +9,9 @@ import (
 	"io"
 )
 
-/**
- * Model for initing client
- */
+// Description:
+//
+// Model for initing client
 type Config struct {
 	// accesskey id
 	AccessKeyId *string `json:"accessKeyId,omitempty" xml:"accessKeyId,omitempty"`
@@ -20,26 +20,66 @@ type Config struct {
 	// security token
 	SecurityToken *string `json:"securityToken,omitempty" xml:"securityToken,omitempty"`
 	// http protocol
+	//
+	// example:
+	//
+	// http
 	Protocol *string `json:"protocol,omitempty" xml:"protocol,omitempty"`
 	// read timeout
+	//
+	// example:
+	//
+	// 10
 	ReadTimeout *int `json:"readTimeout,omitempty" xml:"readTimeout,omitempty"`
 	// connect timeout
+	//
+	// example:
+	//
+	// 10
 	ConnectTimeout *int `json:"connectTimeout,omitempty" xml:"connectTimeout,omitempty"`
 	// http proxy
+	//
+	// example:
+	//
+	// http://localhost
 	HttpProxy *string `json:"httpProxy,omitempty" xml:"httpProxy,omitempty"`
 	// https proxy
+	//
+	// example:
+	//
+	// https://localhost
 	HttpsProxy *string `json:"httpsProxy,omitempty" xml:"httpsProxy,omitempty"`
 	// endpoint
+	//
+	// example:
+	//
+	// cs.aliyuncs.com
 	Endpoint *string `json:"endpoint,omitempty" xml:"endpoint,omitempty"`
 	// proxy white list
+	//
+	// example:
+	//
+	// http://localhost
 	NoProxy *string `json:"noProxy,omitempty" xml:"noProxy,omitempty"`
 	// max idle conns
+	//
+	// example:
+	//
+	// 3
 	MaxIdleConns *int `json:"maxIdleConns,omitempty" xml:"maxIdleConns,omitempty"`
 	// user agent
+	//
+	// example:
+	//
+	// Alibabacloud/1
 	UserAgent *string `json:"userAgent,omitempty" xml:"userAgent,omitempty"`
 	// socks5 proxy
 	Socks5Proxy *string `json:"socks5Proxy,omitempty" xml:"socks5Proxy,omitempty"`
 	// socks5 network
+	//
+	// example:
+	//
+	// TCP
 	Socks5NetWork *string `json:"socks5NetWork,omitempty" xml:"socks5NetWork,omitempty"`
 	// 长链接最大空闲时长
 	MaxIdleTimeMillis *int `json:"maxIdleTimeMillis,omitempty" xml:"maxIdleTimeMillis,omitempty"`
@@ -152,8 +192,14 @@ func (s *Config) SetMaxRequestsPerHost(v int) *Config {
 // 文件结构
 type FileNode struct {
 	// 可访问的文件链接
+	// example:
+	//
+	// http://xxxx
 	Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
 	// 文件名
+	// example:
+	//
+	// xxxxx.pdf
 	Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
 }
 
@@ -178,12 +224,24 @@ func (s *FileNode) SetName(v string) *FileNode {
 // 被保人
 type Insured struct {
 	// 被保人名称
+	// example:
+	//
+	// 李四
 	InsuredName *string `json:"insured_name,omitempty" xml:"insured_name,omitempty" require:"true" maxLength:"32"`
 	// 被保人证件类型
+	// example:
+	//
+	// 01--居民身份证、03--营业执照
 	InsuredCardType *string `json:"insured_card_type,omitempty" xml:"insured_card_type,omitempty" require:"true" maxLength:"32"`
 	// 被保人证件号码
+	// example:
+	//
+	// 123456789
 	InsuredCardCode *string `json:"insured_card_code,omitempty" xml:"insured_card_code,omitempty" require:"true" maxLength:"32"`
 	// 被保人联系方式
+	// example:
+	//
+	// 123456789
 	InsuredContactInfo *string `json:"insured_contact_info,omitempty" xml:"insured_contact_info,omitempty" maxLength:"128"`
 }
 
@@ -218,12 +276,24 @@ func (s *Insured) SetInsuredContactInfo(v string) *Insured {
 // 投保人
 type Applicant struct {
 	// 投保人名称
+	// example:
+	//
+	// 李三
 	ApplicantName *string `json:"applicant_name,omitempty" xml:"applicant_name,omitempty" require:"true" maxLength:"32"`
 	// 投保人证件类型
+	// example:
+	//
+	// 01--居民身份证、03--营业执照
 	ApplicantCardType *string `json:"applicant_card_type,omitempty" xml:"applicant_card_type,omitempty" require:"true" maxLength:"32"`
 	// 投保人证件号码
+	// example:
+	//
+	// xxxxxx
 	ApplicantCardCode *string `json:"applicant_card_code,omitempty" xml:"applicant_card_code,omitempty" require:"true" maxLength:"32"`
 	// 投保人联系方式
+	// example:
+	//
+	// 123456789
 	ApplicantContactInfo *string `json:"applicant_contact_info,omitempty" xml:"applicant_contact_info,omitempty" maxLength:"128"`
 }
 
@@ -258,17 +328,38 @@ func (s *Applicant) SetApplicantContactInfo(v string) *Applicant {
 // 委托险种信息
 type EntrustGuaranteeProduct struct {
 	// 保障失效时间
+	// example:
+	//
+	// 1733711492119
 	GuaranteeExpiryDate *int64 `json:"guarantee_expiry_date,omitempty" xml:"guarantee_expiry_date,omitempty" require:"true"`
 	// 保障生效时间
+	// example:
+	//
+	// 1733711492119
 	GuaranteeEffectiveDate *int64 `json:"guarantee_effective_date,omitempty" xml:"guarantee_effective_date,omitempty" require:"true"`
 	// 保险等待期结束时间
+	// example:
+	//
+	// 1733711492119
 	WaitingPeriodDeadLine *int64 `json:"waiting_period_dead_line,omitempty" xml:"waiting_period_dead_line,omitempty"`
 	// 保单号
+	// example:
+	//
+	// xxxxx
 	PolicyNo *string `json:"policy_no,omitempty" xml:"policy_no,omitempty"`
+	// 平台定义产品码值
+	// example:
+	//
 	// 平台定义产品码值
 	GuaranteeProductCode *string `json:"guarantee_product_code,omitempty" xml:"guarantee_product_code,omitempty"`
 	// 保险公司的产品code
+	// example:
+	//
+	// 保险公司的产品code
 	InsuranceProductCode *string `json:"insurance_product_code,omitempty" xml:"insurance_product_code,omitempty"`
+	// 保险公司的产品描述
+	// example:
+	//
 	// 保险公司的产品描述
 	InsuranceProductName *string `json:"insurance_product_name,omitempty" xml:"insurance_product_name,omitempty"`
 }
@@ -319,8 +410,14 @@ func (s *EntrustGuaranteeProduct) SetInsuranceProductName(v string) *EntrustGuar
 // 实时营销人群
 type RealtimeMktAudience struct {
 	// 加密用户标识
+	// example:
+	//
+	// xxxxx
 	EncryptedUserId *string `json:"encrypted_user_id,omitempty" xml:"encrypted_user_id,omitempty" require:"true"`
 	// 扩展信息
+	// example:
+	//
+	// {}
 	ExtInfo *string `json:"ext_info,omitempty" xml:"ext_info,omitempty" require:"true"`
 }
 
@@ -345,8 +442,14 @@ func (s *RealtimeMktAudience) SetExtInfo(v string) *RealtimeMktAudience {
 // 键值对
 type XNameValuePair struct {
 	// 键名
+	// example:
+	//
+	// key
 	Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
 	// 键值
+	// example:
+	//
+	// value
 	Value *string `json:"value,omitempty" xml:"value,omitempty" require:"true"`
 }
 
@@ -883,6 +986,91 @@ func (s *ApplyMktRealtimemktResponse) SetResultMsg(v string) *ApplyMktRealtimemk
 }
 
 func (s *ApplyMktRealtimemktResponse) SetRequestId(v string) *ApplyMktRealtimemktResponse {
+	s.RequestId = &v
+	return s
+}
+
+type CallbackMktMonitordataRequest struct {
+	// OAuth模式下的授权token
+	AuthToken *string `json:"auth_token,omitempty" xml:"auth_token,omitempty"`
+	// 回传请求对应id
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty" require:"true"`
+	// 监测数据回传数据类型，仅支持: POLICY_DATA（保单信息）, CANCELLATION_DATA（退保信息）, RENEWAL_DATA（续费信息）
+	DataType *string `json:"data_type,omitempty" xml:"data_type,omitempty" require:"true"`
+	// 监测数据回传内容
+	DataContent *string `json:"data_content,omitempty" xml:"data_content,omitempty" require:"true"`
+	// 与待传营销数据相关联的项目id 结合数科网关租户id进行鉴权
+	ProjectId *string `json:"project_id,omitempty" xml:"project_id,omitempty" require:"true"`
+}
+
+func (s CallbackMktMonitordataRequest) String() string {
+	return tea.Prettify(s)
+}
+
+func (s CallbackMktMonitordataRequest) GoString() string {
+	return s.String()
+}
+
+func (s *CallbackMktMonitordataRequest) SetAuthToken(v string) *CallbackMktMonitordataRequest {
+	s.AuthToken = &v
+	return s
+}
+
+func (s *CallbackMktMonitordataRequest) SetRequestId(v string) *CallbackMktMonitordataRequest {
+	s.RequestId = &v
+	return s
+}
+
+func (s *CallbackMktMonitordataRequest) SetDataType(v string) *CallbackMktMonitordataRequest {
+	s.DataType = &v
+	return s
+}
+
+func (s *CallbackMktMonitordataRequest) SetDataContent(v string) *CallbackMktMonitordataRequest {
+	s.DataContent = &v
+	return s
+}
+
+func (s *CallbackMktMonitordataRequest) SetProjectId(v string) *CallbackMktMonitordataRequest {
+	s.ProjectId = &v
+	return s
+}
+
+type CallbackMktMonitordataResponse struct {
+	// 请求唯一ID，用于链路跟踪和问题排查
+	ReqMsgId *string `json:"req_msg_id,omitempty" xml:"req_msg_id,omitempty"`
+	// 结果码，一般OK表示调用成功
+	ResultCode *string `json:"result_code,omitempty" xml:"result_code,omitempty"`
+	// 异常信息的文本描述
+	ResultMsg *string `json:"result_msg,omitempty" xml:"result_msg,omitempty"`
+	// 回传请求对应id
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty"`
+}
+
+func (s CallbackMktMonitordataResponse) String() string {
+	return tea.Prettify(s)
+}
+
+func (s CallbackMktMonitordataResponse) GoString() string {
+	return s.String()
+}
+
+func (s *CallbackMktMonitordataResponse) SetReqMsgId(v string) *CallbackMktMonitordataResponse {
+	s.ReqMsgId = &v
+	return s
+}
+
+func (s *CallbackMktMonitordataResponse) SetResultCode(v string) *CallbackMktMonitordataResponse {
+	s.ResultCode = &v
+	return s
+}
+
+func (s *CallbackMktMonitordataResponse) SetResultMsg(v string) *CallbackMktMonitordataResponse {
+	s.ResultMsg = &v
+	return s
+}
+
+func (s *CallbackMktMonitordataResponse) SetRequestId(v string) *CallbackMktMonitordataResponse {
 	s.RequestId = &v
 	return s
 }
@@ -5456,6 +5644,8 @@ type CallbackMktEffectRequest struct {
 	NodeType *string `json:"node_type,omitempty" xml:"node_type,omitempty" require:"true" maxLength:"64"`
 	// 节点详细信息
 	NodeInfo *string `json:"node_info,omitempty" xml:"node_info,omitempty" maxLength:"1024"`
+	// 产品 ID
+	ProductId *string `json:"product_id,omitempty" xml:"product_id,omitempty"`
 }
 
 func (s CallbackMktEffectRequest) String() string {
@@ -5523,6 +5713,11 @@ func (s *CallbackMktEffectRequest) SetNodeType(v string) *CallbackMktEffectReque
 
 func (s *CallbackMktEffectRequest) SetNodeInfo(v string) *CallbackMktEffectRequest {
 	s.NodeInfo = &v
+	return s
+}
+
+func (s *CallbackMktEffectRequest) SetProductId(v string) *CallbackMktEffectRequest {
+	s.ProductId = &v
 	return s
 }
 
@@ -5792,10 +5987,11 @@ type Client struct {
 	MaxRequestsPerHost      *int
 }
 
-/**
- * Init client with Config
- * @param config config contains the necessary information to create a client
- */
+// Description:
+//
+// # Init client with Config
+//
+// @param config - config contains the necessary information to create a client
 func NewClient(config *Config) (*Client, error) {
 	client := new(Client)
 	err := client.Init(config)
@@ -5803,7 +5999,7 @@ func NewClient(config *Config) (*Client, error) {
 }
 
 func (client *Client) Init(config *Config) (_err error) {
-	if tea.BoolValue(util.IsUnset(tea.ToMap(config))) {
+	if tea.BoolValue(util.IsUnset(config)) {
 		_err = tea.NewSDKError(map[string]interface{}{
 			"code":    "ParameterMissing",
 			"message": "'config' can not be unset",
@@ -5832,16 +6028,23 @@ func (client *Client) Init(config *Config) (_err error) {
 	return nil
 }
 
-/**
- * Encapsulate the request and invoke the network
- * @param action api name
- * @param protocol http or https
- * @param method e.g. GET
- * @param pathname pathname of every api
- * @param request which contains request params
- * @param runtime which controls some details of call api, such as retry times
- * @return the response
- */
+// Description:
+//
+// # Encapsulate the request and invoke the network
+//
+// @param action - api name
+//
+// @param protocol - http or https
+//
+// @param method - e.g. GET
+//
+// @param pathname - pathname of every api
+//
+// @param request - which contains request params
+//
+// @param runtime - which controls some details of call api, such as retry times
+//
+// @return the response
 func (client *Client) DoRequest(version *string, action *string, protocol *string, method *string, pathname *string, request map[string]interface{}, headers map[string]*string, runtime *util.RuntimeOptions) (_result map[string]interface{}, _err error) {
 	_err = tea.Validate(runtime)
 	if _err != nil {
@@ -5892,7 +6095,7 @@ func (client *Client) DoRequest(version *string, action *string, protocol *strin
 				"req_msg_id":       antchainutil.GetNonce(),
 				"access_key":       client.AccessKeyId,
 				"base_sdk_version": tea.String("TeaSDK-2.0"),
-				"sdk_version":      tea.String("1.12.37"),
+				"sdk_version":      tea.String("1.12.40"),
 				"_prod_code":       tea.String("INSURANCE_SAAS"),
 				"_prod_channel":    tea.String("undefined"),
 			}
@@ -5950,10 +6153,11 @@ func (client *Client) DoRequest(version *string, action *string, protocol *strin
 	return _resp, _err
 }
 
-/**
- * Description: 客户查询会话记录
- * Summary: 客户查询会话记录
- */
+// Description:
+//
+// Description: 客户查询会话记录
+//
+// Summary: 客户查询会话记录
 func (client *Client) QueryAasButleragentSession(request *QueryAasButleragentSessionRequest) (_result *QueryAasButleragentSessionResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -5966,10 +6170,11 @@ func (client *Client) QueryAasButleragentSession(request *QueryAasButleragentSes
 	return _result, _err
 }
 
-/**
- * Description: 客户查询会话记录
- * Summary: 客户查询会话记录
- */
+// Description:
+//
+// Description: 客户查询会话记录
+//
+// Summary: 客户查询会话记录
 func (client *Client) QueryAasButleragentSessionEx(request *QueryAasButleragentSessionRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryAasButleragentSessionResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -5984,10 +6189,11 @@ func (client *Client) QueryAasButleragentSessionEx(request *QueryAasButleragentS
 	return _result, _err
 }
 
-/**
- * Description: 智能保顾完整方案url获取
- * Summary: 智能保顾完整方案url获取
- */
+// Description:
+//
+// Description: 智能保顾完整方案url获取
+//
+// Summary: 智能保顾完整方案url获取
 func (client *Client) GetAasButleragentPlanurl(request *GetAasButleragentPlanurlRequest) (_result *GetAasButleragentPlanurlResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6000,10 +6206,11 @@ func (client *Client) GetAasButleragentPlanurl(request *GetAasButleragentPlanurl
 	return _result, _err
 }
 
-/**
- * Description: 智能保顾完整方案url获取
- * Summary: 智能保顾完整方案url获取
- */
+// Description:
+//
+// Description: 智能保顾完整方案url获取
+//
+// Summary: 智能保顾完整方案url获取
 func (client *Client) GetAasButleragentPlanurlEx(request *GetAasButleragentPlanurlRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *GetAasButleragentPlanurlResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6018,10 +6225,11 @@ func (client *Client) GetAasButleragentPlanurlEx(request *GetAasButleragentPlanu
 	return _result, _err
 }
 
-/**
- * Description: 获取智能保顾会话聊天url
- * Summary: 获取智能保顾会话聊天url
- */
+// Description:
+//
+// Description: 获取智能保顾会话聊天url
+//
+// Summary: 获取智能保顾会话聊天url
 func (client *Client) GetAasButleragentChaturl(request *GetAasButleragentChaturlRequest) (_result *GetAasButleragentChaturlResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6034,10 +6242,11 @@ func (client *Client) GetAasButleragentChaturl(request *GetAasButleragentChaturl
 	return _result, _err
 }
 
-/**
- * Description: 获取智能保顾会话聊天url
- * Summary: 获取智能保顾会话聊天url
- */
+// Description:
+//
+// Description: 获取智能保顾会话聊天url
+//
+// Summary: 获取智能保顾会话聊天url
 func (client *Client) GetAasButleragentChaturlEx(request *GetAasButleragentChaturlRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *GetAasButleragentChaturlResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6052,10 +6261,11 @@ func (client *Client) GetAasButleragentChaturlEx(request *GetAasButleragentChatu
 	return _result, _err
 }
 
-/**
- * Description: 保险营销效果回传接口——直播通道
- * Summary: 保险营销效果回传接口——直播通道
- */
+// Description:
+//
+// Description: 保险营销效果回传接口——直播通道
+//
+// Summary: 保险营销效果回传接口——直播通道
 func (client *Client) CallbackMktLiveeffect(request *CallbackMktLiveeffectRequest) (_result *CallbackMktLiveeffectResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6068,10 +6278,11 @@ func (client *Client) CallbackMktLiveeffect(request *CallbackMktLiveeffectReques
 	return _result, _err
 }
 
-/**
- * Description: 保险营销效果回传接口——直播通道
- * Summary: 保险营销效果回传接口——直播通道
- */
+// Description:
+//
+// Description: 保险营销效果回传接口——直播通道
+//
+// Summary: 保险营销效果回传接口——直播通道
 func (client *Client) CallbackMktLiveeffectEx(request *CallbackMktLiveeffectRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMktLiveeffectResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6086,10 +6297,11 @@ func (client *Client) CallbackMktLiveeffectEx(request *CallbackMktLiveeffectRequ
 	return _result, _err
 }
 
-/**
- * Description: 保险实时营销提交
- * Summary: 保险实时营销提交
- */
+// Description:
+//
+// Description: 保险实时营销提交
+//
+// Summary: 保险实时营销提交
 func (client *Client) ApplyMktRealtimemkt(request *ApplyMktRealtimemktRequest) (_result *ApplyMktRealtimemktResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6102,10 +6314,11 @@ func (client *Client) ApplyMktRealtimemkt(request *ApplyMktRealtimemktRequest) (
 	return _result, _err
 }
 
-/**
- * Description: 保险实时营销提交
- * Summary: 保险实时营销提交
- */
+// Description:
+//
+// Description: 保险实时营销提交
+//
+// Summary: 保险实时营销提交
 func (client *Client) ApplyMktRealtimemktEx(request *ApplyMktRealtimemktRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ApplyMktRealtimemktResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6120,10 +6333,47 @@ func (client *Client) ApplyMktRealtimemktEx(request *ApplyMktRealtimemktRequest,
 	return _result, _err
 }
 
-/**
- * Description: 保险询报价结果查询
- * Summary: 保险询报价结果查询
- */
+// Description:
+//
+// Description: 保司营销监测数据回传
+//
+// Summary: 保司营销监测数据回传
+func (client *Client) CallbackMktMonitordata(request *CallbackMktMonitordataRequest) (_result *CallbackMktMonitordataResponse, _err error) {
+	runtime := &util.RuntimeOptions{}
+	headers := make(map[string]*string)
+	_result = &CallbackMktMonitordataResponse{}
+	_body, _err := client.CallbackMktMonitordataEx(request, headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = _body
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 保司营销监测数据回传
+//
+// Summary: 保司营销监测数据回传
+func (client *Client) CallbackMktMonitordataEx(request *CallbackMktMonitordataRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMktMonitordataResponse, _err error) {
+	_err = util.ValidateModel(request)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = &CallbackMktMonitordataResponse{}
+	_body, _err := client.DoRequest(tea.String("1.0"), tea.String("antcloud.insurance.mkt.monitordata.callback"), tea.String("HTTPS"), tea.String("POST"), tea.String("/gateway.do"), tea.ToMap(request), headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_err = tea.Convert(_body, &_result)
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 保险询报价结果查询
+//
+// Summary: 保险询报价结果查询
 func (client *Client) QueryInquiry(request *QueryInquiryRequest) (_result *QueryInquiryResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6136,10 +6386,11 @@ func (client *Client) QueryInquiry(request *QueryInquiryRequest) (_result *Query
 	return _result, _err
 }
 
-/**
- * Description: 保险询报价结果查询
- * Summary: 保险询报价结果查询
- */
+// Description:
+//
+// Description: 保险询报价结果查询
+//
+// Summary: 保险询报价结果查询
 func (client *Client) QueryInquiryEx(request *QueryInquiryRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryInquiryResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6154,10 +6405,11 @@ func (client *Client) QueryInquiryEx(request *QueryInquiryRequest, headers map[s
 	return _result, _err
 }
 
-/**
- * Description: 保险产品询价
- * Summary: 保险产品询价
- */
+// Description:
+//
+// Description: 保险产品询价
+//
+// Summary: 保险产品询价
 func (client *Client) SubmitInquiry(request *SubmitInquiryRequest) (_result *SubmitInquiryResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6170,10 +6422,11 @@ func (client *Client) SubmitInquiry(request *SubmitInquiryRequest) (_result *Sub
 	return _result, _err
 }
 
-/**
- * Description: 保险产品询价
- * Summary: 保险产品询价
- */
+// Description:
+//
+// Description: 保险产品询价
+//
+// Summary: 保险产品询价
 func (client *Client) SubmitInquiryEx(request *SubmitInquiryRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *SubmitInquiryResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6188,10 +6441,11 @@ func (client *Client) SubmitInquiryEx(request *SubmitInquiryRequest, headers map
 	return _result, _err
 }
 
-/**
- * Description: 历史灾害查询
- * Summary: 历史灾害数据查询
- */
+// Description:
+//
+// Description: 历史灾害查询
+//
+// Summary: 历史灾害数据查询
 func (client *Client) QueryDataDisaster(request *QueryDataDisasterRequest) (_result *QueryDataDisasterResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6204,10 +6458,11 @@ func (client *Client) QueryDataDisaster(request *QueryDataDisasterRequest) (_res
 	return _result, _err
 }
 
-/**
- * Description: 历史灾害查询
- * Summary: 历史灾害数据查询
- */
+// Description:
+//
+// Description: 历史灾害查询
+//
+// Summary: 历史灾害数据查询
 func (client *Client) QueryDataDisasterEx(request *QueryDataDisasterRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryDataDisasterResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6222,10 +6477,11 @@ func (client *Client) QueryDataDisasterEx(request *QueryDataDisasterRequest, hea
 	return _result, _err
 }
 
-/**
- * Description: 实时天气预警
- * Summary: 实时天气预警
- */
+// Description:
+//
+// Description: 实时天气预警
+//
+// Summary: 实时天气预警
 func (client *Client) QueryDataWeather(request *QueryDataWeatherRequest) (_result *QueryDataWeatherResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6238,10 +6494,11 @@ func (client *Client) QueryDataWeather(request *QueryDataWeatherRequest) (_resul
 	return _result, _err
 }
 
-/**
- * Description: 实时天气预警
- * Summary: 实时天气预警
- */
+// Description:
+//
+// Description: 实时天气预警
+//
+// Summary: 实时天气预警
 func (client *Client) QueryDataWeatherEx(request *QueryDataWeatherRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryDataWeatherResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6256,10 +6513,11 @@ func (client *Client) QueryDataWeatherEx(request *QueryDataWeatherRequest, heade
 	return _result, _err
 }
 
-/**
- * Description: 报价接口同步接口
- * Summary: 报价接口同步接口
- */
+// Description:
+//
+// Description: 报价接口同步接口
+//
+// Summary: 报价接口同步接口
 func (client *Client) SyncQuote(request *SyncQuoteRequest) (_result *SyncQuoteResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6272,10 +6530,11 @@ func (client *Client) SyncQuote(request *SyncQuoteRequest) (_result *SyncQuoteRe
 	return _result, _err
 }
 
-/**
- * Description: 报价接口同步接口
- * Summary: 报价接口同步接口
- */
+// Description:
+//
+// Description: 报价接口同步接口
+//
+// Summary: 报价接口同步接口
 func (client *Client) SyncQuoteEx(request *SyncQuoteRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *SyncQuoteResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6290,10 +6549,11 @@ func (client *Client) SyncQuoteEx(request *SyncQuoteRequest, headers map[string]
 	return _result, _err
 }
 
-/**
- * Description: 承保自核申请接口
- * Summary: 承保自核申请接口
- */
+// Description:
+//
+// Description: 承保自核申请接口
+//
+// Summary: 承保自核申请接口
 func (client *Client) ApplyUnderwriting(request *ApplyUnderwritingRequest) (_result *ApplyUnderwritingResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6306,10 +6566,11 @@ func (client *Client) ApplyUnderwriting(request *ApplyUnderwritingRequest) (_res
 	return _result, _err
 }
 
-/**
- * Description: 承保自核申请接口
- * Summary: 承保自核申请接口
- */
+// Description:
+//
+// Description: 承保自核申请接口
+//
+// Summary: 承保自核申请接口
 func (client *Client) ApplyUnderwritingEx(request *ApplyUnderwritingRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ApplyUnderwritingResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6324,10 +6585,11 @@ func (client *Client) ApplyUnderwritingEx(request *ApplyUnderwritingRequest, hea
 	return _result, _err
 }
 
-/**
- * Description: 承保自核结果查询接口
- * Summary: 承保自核结果查询接口
- */
+// Description:
+//
+// Description: 承保自核结果查询接口
+//
+// Summary: 承保自核结果查询接口
 func (client *Client) QueryUnderwriting(request *QueryUnderwritingRequest) (_result *QueryUnderwritingResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6340,10 +6602,11 @@ func (client *Client) QueryUnderwriting(request *QueryUnderwritingRequest) (_res
 	return _result, _err
 }
 
-/**
- * Description: 承保自核结果查询接口
- * Summary: 承保自核结果查询接口
- */
+// Description:
+//
+// Description: 承保自核结果查询接口
+//
+// Summary: 承保自核结果查询接口
 func (client *Client) QueryUnderwritingEx(request *QueryUnderwritingRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryUnderwritingResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6358,10 +6621,11 @@ func (client *Client) QueryUnderwritingEx(request *QueryUnderwritingRequest, hea
 	return _result, _err
 }
 
-/**
- * Description: 根据保单号查询保单附件，并返回一个有效期为7天的ossurl
- * Summary: 保险科技保单附件查询接口
- */
+// Description:
+//
+// Description: 根据保单号查询保单附件，并返回一个有效期为7天的ossurl
+//
+// Summary: 保险科技保单附件查询接口
 func (client *Client) QueryPolicyFile(request *QueryPolicyFileRequest) (_result *QueryPolicyFileResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6374,10 +6638,11 @@ func (client *Client) QueryPolicyFile(request *QueryPolicyFileRequest) (_result 
 	return _result, _err
 }
 
-/**
- * Description: 根据保单号查询保单附件，并返回一个有效期为7天的ossurl
- * Summary: 保险科技保单附件查询接口
- */
+// Description:
+//
+// Description: 根据保单号查询保单附件，并返回一个有效期为7天的ossurl
+//
+// Summary: 保险科技保单附件查询接口
 func (client *Client) QueryPolicyFileEx(request *QueryPolicyFileRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryPolicyFileResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6392,10 +6657,11 @@ func (client *Client) QueryPolicyFileEx(request *QueryPolicyFileRequest, headers
 	return _result, _err
 }
 
-/**
- * Description: 保险SaaS投保申请接口
- * Summary: 投保申请接口
- */
+// Description:
+//
+// Description: 保险SaaS投保申请接口
+//
+// Summary: 投保申请接口
 func (client *Client) ApplyInsure(request *ApplyInsureRequest) (_result *ApplyInsureResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6408,10 +6674,11 @@ func (client *Client) ApplyInsure(request *ApplyInsureRequest) (_result *ApplyIn
 	return _result, _err
 }
 
-/**
- * Description: 保险SaaS投保申请接口
- * Summary: 投保申请接口
- */
+// Description:
+//
+// Description: 保险SaaS投保申请接口
+//
+// Summary: 投保申请接口
 func (client *Client) ApplyInsureEx(request *ApplyInsureRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ApplyInsureResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6426,10 +6693,11 @@ func (client *Client) ApplyInsureEx(request *ApplyInsureRequest, headers map[str
 	return _result, _err
 }
 
-/**
- * Description: 保单结果同步，注意：基于投保信息的保单结果同步。
- * Summary: 保单结果同步（依赖投保申请）
- */
+// Description:
+//
+// Description: 保单结果同步，注意：基于投保信息的保单结果同步。
+//
+// Summary: 保单结果同步（依赖投保申请）
 func (client *Client) NotifyPolicyResult(request *NotifyPolicyResultRequest) (_result *NotifyPolicyResultResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6442,10 +6710,11 @@ func (client *Client) NotifyPolicyResult(request *NotifyPolicyResultRequest) (_r
 	return _result, _err
 }
 
-/**
- * Description: 保单结果同步，注意：基于投保信息的保单结果同步。
- * Summary: 保单结果同步（依赖投保申请）
- */
+// Description:
+//
+// Description: 保单结果同步，注意：基于投保信息的保单结果同步。
+//
+// Summary: 保单结果同步（依赖投保申请）
 func (client *Client) NotifyPolicyResultEx(request *NotifyPolicyResultRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *NotifyPolicyResultResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6460,10 +6729,11 @@ func (client *Client) NotifyPolicyResultEx(request *NotifyPolicyResultRequest, h
 	return _result, _err
 }
 
-/**
- * Description: 报案接口
- * Summary: 保险科技 报案接口
- */
+// Description:
+//
+// Description: 报案接口
+//
+// Summary: 保险科技 报案接口
 func (client *Client) ApplyClaim(request *ApplyClaimRequest) (_result *ApplyClaimResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6476,10 +6746,11 @@ func (client *Client) ApplyClaim(request *ApplyClaimRequest) (_result *ApplyClai
 	return _result, _err
 }
 
-/**
- * Description: 报案接口
- * Summary: 保险科技 报案接口
- */
+// Description:
+//
+// Description: 报案接口
+//
+// Summary: 保险科技 报案接口
 func (client *Client) ApplyClaimEx(request *ApplyClaimRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ApplyClaimResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6494,10 +6765,11 @@ func (client *Client) ApplyClaimEx(request *ApplyClaimRequest, headers map[strin
 	return _result, _err
 }
 
-/**
- * Description: 报案撤销（场景端）
- * Summary: 报案撤销（场景端）
- */
+// Description:
+//
+// Description: 报案撤销（场景端）
+//
+// Summary: 报案撤销（场景端）
 func (client *Client) CancelClaim(request *CancelClaimRequest) (_result *CancelClaimResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6510,10 +6782,11 @@ func (client *Client) CancelClaim(request *CancelClaimRequest) (_result *CancelC
 	return _result, _err
 }
 
-/**
- * Description: 报案撤销（场景端）
- * Summary: 报案撤销（场景端）
- */
+// Description:
+//
+// Description: 报案撤销（场景端）
+//
+// Summary: 报案撤销（场景端）
 func (client *Client) CancelClaimEx(request *CancelClaimRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CancelClaimResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6528,10 +6801,11 @@ func (client *Client) CancelClaimEx(request *CancelClaimRequest, headers map[str
 	return _result, _err
 }
 
-/**
- * Description: 报案材料更新（场景端）
- * Summary: 报案材料更新（场景端）
- */
+// Description:
+//
+// Description: 报案材料更新（场景端）
+//
+// Summary: 报案材料更新（场景端）
 func (client *Client) UpdateClaimMaterial(request *UpdateClaimMaterialRequest) (_result *UpdateClaimMaterialResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6544,10 +6818,11 @@ func (client *Client) UpdateClaimMaterial(request *UpdateClaimMaterialRequest) (
 	return _result, _err
 }
 
-/**
- * Description: 报案材料更新（场景端）
- * Summary: 报案材料更新（场景端）
- */
+// Description:
+//
+// Description: 报案材料更新（场景端）
+//
+// Summary: 报案材料更新（场景端）
 func (client *Client) UpdateClaimMaterialEx(request *UpdateClaimMaterialRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *UpdateClaimMaterialResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6562,10 +6837,11 @@ func (client *Client) UpdateClaimMaterialEx(request *UpdateClaimMaterialRequest,
 	return _result, _err
 }
 
-/**
- * Description: 理赔结果确认（场景端）
- * Summary: 理赔结果确认（场景端）
- */
+// Description:
+//
+// Description: 理赔结果确认（场景端）
+//
+// Summary: 理赔结果确认（场景端）
 func (client *Client) ConfirmClaimSettle(request *ConfirmClaimSettleRequest) (_result *ConfirmClaimSettleResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6578,10 +6854,11 @@ func (client *Client) ConfirmClaimSettle(request *ConfirmClaimSettleRequest) (_r
 	return _result, _err
 }
 
-/**
- * Description: 理赔结果确认（场景端）
- * Summary: 理赔结果确认（场景端）
- */
+// Description:
+//
+// Description: 理赔结果确认（场景端）
+//
+// Summary: 理赔结果确认（场景端）
 func (client *Client) ConfirmClaimSettleEx(request *ConfirmClaimSettleRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ConfirmClaimSettleResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6596,10 +6873,11 @@ func (client *Client) ConfirmClaimSettleEx(request *ConfirmClaimSettleRequest, h
 	return _result, _err
 }
 
-/**
- * Description: 理赔结案通知（保司端）
- * Summary: 理赔结案通知（保司端）
- */
+// Description:
+//
+// Description: 理赔结案通知（保司端）
+//
+// Summary: 理赔结案通知（保司端）
 func (client *Client) FinishClaimSettle(request *FinishClaimSettleRequest) (_result *FinishClaimSettleResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6612,10 +6890,11 @@ func (client *Client) FinishClaimSettle(request *FinishClaimSettleRequest) (_res
 	return _result, _err
 }
 
-/**
- * Description: 理赔结案通知（保司端）
- * Summary: 理赔结案通知（保司端）
- */
+// Description:
+//
+// Description: 理赔结案通知（保司端）
+//
+// Summary: 理赔结案通知（保司端）
 func (client *Client) FinishClaimSettleEx(request *FinishClaimSettleRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *FinishClaimSettleResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6630,10 +6909,11 @@ func (client *Client) FinishClaimSettleEx(request *FinishClaimSettleRequest, hea
 	return _result, _err
 }
 
-/**
- * Description: 保险批改自核接口
- * Summary: 保险批改自核接口
- */
+// Description:
+//
+// Description: 保险批改自核接口
+//
+// Summary: 保险批改自核接口
 func (client *Client) ApplyEndorsementStrategy(request *ApplyEndorsementStrategyRequest) (_result *ApplyEndorsementStrategyResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6646,10 +6926,11 @@ func (client *Client) ApplyEndorsementStrategy(request *ApplyEndorsementStrategy
 	return _result, _err
 }
 
-/**
- * Description: 保险批改自核接口
- * Summary: 保险批改自核接口
- */
+// Description:
+//
+// Description: 保险批改自核接口
+//
+// Summary: 保险批改自核接口
 func (client *Client) ApplyEndorsementStrategyEx(request *ApplyEndorsementStrategyRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ApplyEndorsementStrategyResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6664,10 +6945,11 @@ func (client *Client) ApplyEndorsementStrategyEx(request *ApplyEndorsementStrate
 	return _result, _err
 }
 
-/**
- * Description: 保单信息离线同步
- * Summary: 保单信息离线同步
- */
+// Description:
+//
+// Description: 保单信息离线同步
+//
+// Summary: 保单信息离线同步
 func (client *Client) SyncPolicyResult(request *SyncPolicyResultRequest) (_result *SyncPolicyResultResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6680,10 +6962,11 @@ func (client *Client) SyncPolicyResult(request *SyncPolicyResultRequest) (_resul
 	return _result, _err
 }
 
-/**
- * Description: 保单信息离线同步
- * Summary: 保单信息离线同步
- */
+// Description:
+//
+// Description: 保单信息离线同步
+//
+// Summary: 保单信息离线同步
 func (client *Client) SyncPolicyResultEx(request *SyncPolicyResultRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *SyncPolicyResultResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6698,10 +6981,11 @@ func (client *Client) SyncPolicyResultEx(request *SyncPolicyResultRequest, heade
 	return _result, _err
 }
 
-/**
- * Description: 基于通知单号查询保险投保结果
- * Summary: 保险投保结果查询
- */
+// Description:
+//
+// Description: 基于通知单号查询保险投保结果
+//
+// Summary: 保险投保结果查询
 func (client *Client) QueryInsureResult(request *QueryInsureResultRequest) (_result *QueryInsureResultResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6714,10 +6998,11 @@ func (client *Client) QueryInsureResult(request *QueryInsureResultRequest) (_res
 	return _result, _err
 }
 
-/**
- * Description: 基于通知单号查询保险投保结果
- * Summary: 保险投保结果查询
- */
+// Description:
+//
+// Description: 基于通知单号查询保险投保结果
+//
+// Summary: 保险投保结果查询
 func (client *Client) QueryInsureResultEx(request *QueryInsureResultRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryInsureResultResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6732,10 +7017,11 @@ func (client *Client) QueryInsureResultEx(request *QueryInsureResultRequest, hea
 	return _result, _err
 }
 
-/**
- * Description: 投保测试接口
- * Summary: 投保测试接口
- */
+// Description:
+//
+// Description: 投保测试接口
+//
+// Summary: 投保测试接口
 func (client *Client) ApplyInsureTest(request *ApplyInsureTestRequest) (_result *ApplyInsureTestResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6748,10 +7034,11 @@ func (client *Client) ApplyInsureTest(request *ApplyInsureTestRequest) (_result 
 	return _result, _err
 }
 
-/**
- * Description: 投保测试接口
- * Summary: 投保测试接口
- */
+// Description:
+//
+// Description: 投保测试接口
+//
+// Summary: 投保测试接口
 func (client *Client) ApplyInsureTestEx(request *ApplyInsureTestRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ApplyInsureTestResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6766,10 +7053,11 @@ func (client *Client) ApplyInsureTestEx(request *ApplyInsureTestRequest, headers
 	return _result, _err
 }
 
-/**
- * Description: 本接口用于调查报案数据的提交
- * Summary: 调查报案提交接口
- */
+// Description:
+//
+// Description: 本接口用于调查报案数据的提交
+//
+// Summary: 调查报案提交接口
 func (client *Client) SubmitInvestigateCase(request *SubmitInvestigateCaseRequest) (_result *SubmitInvestigateCaseResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6782,10 +7070,11 @@ func (client *Client) SubmitInvestigateCase(request *SubmitInvestigateCaseReques
 	return _result, _err
 }
 
-/**
- * Description: 本接口用于调查报案数据的提交
- * Summary: 调查报案提交接口
- */
+// Description:
+//
+// Description: 本接口用于调查报案数据的提交
+//
+// Summary: 调查报案提交接口
 func (client *Client) SubmitInvestigateCaseEx(request *SubmitInvestigateCaseRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *SubmitInvestigateCaseResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6800,10 +7089,11 @@ func (client *Client) SubmitInvestigateCaseEx(request *SubmitInvestigateCaseRequ
 	return _result, _err
 }
 
-/**
- * Description: 回销结果查询接口
- * Summary: 回销结果查询接口
- */
+// Description:
+//
+// Description: 回销结果查询接口
+//
+// Summary: 回销结果查询接口
 func (client *Client) QueryReverseCommission(request *QueryReverseCommissionRequest) (_result *QueryReverseCommissionResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6816,10 +7106,11 @@ func (client *Client) QueryReverseCommission(request *QueryReverseCommissionRequ
 	return _result, _err
 }
 
-/**
- * Description: 回销结果查询接口
- * Summary: 回销结果查询接口
- */
+// Description:
+//
+// Description: 回销结果查询接口
+//
+// Summary: 回销结果查询接口
 func (client *Client) QueryReverseCommissionEx(request *QueryReverseCommissionRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryReverseCommissionResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6834,10 +7125,11 @@ func (client *Client) QueryReverseCommissionEx(request *QueryReverseCommissionRe
 	return _result, _err
 }
 
-/**
- * Description: 嵌入式保险服务卡片url链接获取
- * Summary: 嵌入式保险服务卡片url链接获取
- */
+// Description:
+//
+// Description: 嵌入式保险服务卡片url链接获取
+//
+// Summary: 嵌入式保险服务卡片url链接获取
 func (client *Client) GetEmbedcardUrl(request *GetEmbedcardUrlRequest) (_result *GetEmbedcardUrlResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6850,10 +7142,11 @@ func (client *Client) GetEmbedcardUrl(request *GetEmbedcardUrlRequest) (_result 
 	return _result, _err
 }
 
-/**
- * Description: 嵌入式保险服务卡片url链接获取
- * Summary: 嵌入式保险服务卡片url链接获取
- */
+// Description:
+//
+// Description: 嵌入式保险服务卡片url链接获取
+//
+// Summary: 嵌入式保险服务卡片url链接获取
 func (client *Client) GetEmbedcardUrlEx(request *GetEmbedcardUrlRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *GetEmbedcardUrlResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6868,10 +7161,11 @@ func (client *Client) GetEmbedcardUrlEx(request *GetEmbedcardUrlRequest, headers
 	return _result, _err
 }
 
-/**
- * Description: 嵌入式保险服务打款成功出单接口
- * Summary: 嵌入式保险服务打款成功出单接口
- */
+// Description:
+//
+// Description: 嵌入式保险服务打款成功出单接口
+//
+// Summary: 嵌入式保险服务打款成功出单接口
 func (client *Client) IssueEmbedcardPaysuc(request *IssueEmbedcardPaysucRequest) (_result *IssueEmbedcardPaysucResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6884,10 +7178,11 @@ func (client *Client) IssueEmbedcardPaysuc(request *IssueEmbedcardPaysucRequest)
 	return _result, _err
 }
 
-/**
- * Description: 嵌入式保险服务打款成功出单接口
- * Summary: 嵌入式保险服务打款成功出单接口
- */
+// Description:
+//
+// Description: 嵌入式保险服务打款成功出单接口
+//
+// Summary: 嵌入式保险服务打款成功出单接口
 func (client *Client) IssueEmbedcardPaysucEx(request *IssueEmbedcardPaysucRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *IssueEmbedcardPaysucResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6902,10 +7197,11 @@ func (client *Client) IssueEmbedcardPaysucEx(request *IssueEmbedcardPaysucReques
 	return _result, _err
 }
 
-/**
- * Description: 嵌入式主机厂车险url链接获取
- * Summary: 嵌入式主机厂车险url链接获取
- */
+// Description:
+//
+// Description: 嵌入式主机厂车险url链接获取
+//
+// Summary: 嵌入式主机厂车险url链接获取
 func (client *Client) GetEmbedoemautoinsuranceUrl(request *GetEmbedoemautoinsuranceUrlRequest) (_result *GetEmbedoemautoinsuranceUrlResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6918,10 +7214,11 @@ func (client *Client) GetEmbedoemautoinsuranceUrl(request *GetEmbedoemautoinsura
 	return _result, _err
 }
 
-/**
- * Description: 嵌入式主机厂车险url链接获取
- * Summary: 嵌入式主机厂车险url链接获取
- */
+// Description:
+//
+// Description: 嵌入式主机厂车险url链接获取
+//
+// Summary: 嵌入式主机厂车险url链接获取
 func (client *Client) GetEmbedoemautoinsuranceUrlEx(request *GetEmbedoemautoinsuranceUrlRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *GetEmbedoemautoinsuranceUrlResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6936,10 +7233,11 @@ func (client *Client) GetEmbedoemautoinsuranceUrlEx(request *GetEmbedoemautoinsu
 	return _result, _err
 }
 
-/**
- * Description: 场景方获取权益链接
- * Summary: 场景方获取权益链接
- */
+// Description:
+//
+// Description: 场景方获取权益链接
+//
+// Summary: 场景方获取权益链接
 func (client *Client) GetRightplatformUrl(request *GetRightplatformUrlRequest) (_result *GetRightplatformUrlResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6952,10 +7250,11 @@ func (client *Client) GetRightplatformUrl(request *GetRightplatformUrlRequest) (
 	return _result, _err
 }
 
-/**
- * Description: 场景方获取权益链接
- * Summary: 场景方获取权益链接
- */
+// Description:
+//
+// Description: 场景方获取权益链接
+//
+// Summary: 场景方获取权益链接
 func (client *Client) GetRightplatformUrlEx(request *GetRightplatformUrlRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *GetRightplatformUrlResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6970,10 +7269,11 @@ func (client *Client) GetRightplatformUrlEx(request *GetRightplatformUrlRequest,
 	return _result, _err
 }
 
-/**
- * Description: 更新申请额度状态&投保人信息
- * Summary: 更新申请额度状态&投保人信息
- */
+// Description:
+//
+// Description: 更新申请额度状态&投保人信息
+//
+// Summary: 更新申请额度状态&投保人信息
 func (client *Client) UpdateRightplatformApplyinfo(request *UpdateRightplatformApplyinfoRequest) (_result *UpdateRightplatformApplyinfoResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6986,10 +7286,11 @@ func (client *Client) UpdateRightplatformApplyinfo(request *UpdateRightplatformA
 	return _result, _err
 }
 
-/**
- * Description: 更新申请额度状态&投保人信息
- * Summary: 更新申请额度状态&投保人信息
- */
+// Description:
+//
+// Description: 更新申请额度状态&投保人信息
+//
+// Summary: 更新申请额度状态&投保人信息
 func (client *Client) UpdateRightplatformApplyinfoEx(request *UpdateRightplatformApplyinfoRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *UpdateRightplatformApplyinfoResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7004,10 +7305,11 @@ func (client *Client) UpdateRightplatformApplyinfoEx(request *UpdateRightplatfor
 	return _result, _err
 }
 
-/**
- * Description: 场景方标的信息通知
- * Summary: 场景方标的信息通知
- */
+// Description:
+//
+// Description: 场景方标的信息通知
+//
+// Summary: 场景方标的信息通知
 func (client *Client) NotifyInterestScenesubject(request *NotifyInterestScenesubjectRequest) (_result *NotifyInterestScenesubjectResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7020,10 +7322,11 @@ func (client *Client) NotifyInterestScenesubject(request *NotifyInterestScenesub
 	return _result, _err
 }
 
-/**
- * Description: 场景方标的信息通知
- * Summary: 场景方标的信息通知
- */
+// Description:
+//
+// Description: 场景方标的信息通知
+//
+// Summary: 场景方标的信息通知
 func (client *Client) NotifyInterestScenesubjectEx(request *NotifyInterestScenesubjectRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *NotifyInterestScenesubjectResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7038,10 +7341,11 @@ func (client *Client) NotifyInterestScenesubjectEx(request *NotifyInterestScenes
 	return _result, _err
 }
 
-/**
- * Description: 权益服务商标的信息查询
- * Summary: 权益服务商标的信息查询
- */
+// Description:
+//
+// Description: 权益服务商标的信息查询
+//
+// Summary: 权益服务商标的信息查询
 func (client *Client) QueryInterestSuppliersubject(request *QueryInterestSuppliersubjectRequest) (_result *QueryInterestSuppliersubjectResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7054,10 +7358,11 @@ func (client *Client) QueryInterestSuppliersubject(request *QueryInterestSupplie
 	return _result, _err
 }
 
-/**
- * Description: 权益服务商标的信息查询
- * Summary: 权益服务商标的信息查询
- */
+// Description:
+//
+// Description: 权益服务商标的信息查询
+//
+// Summary: 权益服务商标的信息查询
 func (client *Client) QueryInterestSuppliersubjectEx(request *QueryInterestSuppliersubjectRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryInterestSuppliersubjectResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7072,10 +7377,11 @@ func (client *Client) QueryInterestSuppliersubjectEx(request *QueryInterestSuppl
 	return _result, _err
 }
 
-/**
- * Description: 权益服务商投保后通知保单信息
- * Summary: 权益服务商投保后通知保单信息
- */
+// Description:
+//
+// Description: 权益服务商投保后通知保单信息
+//
+// Summary: 权益服务商投保后通知保单信息
 func (client *Client) NotifyInterestSupplierpolicy(request *NotifyInterestSupplierpolicyRequest) (_result *NotifyInterestSupplierpolicyResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7088,10 +7394,11 @@ func (client *Client) NotifyInterestSupplierpolicy(request *NotifyInterestSuppli
 	return _result, _err
 }
 
-/**
- * Description: 权益服务商投保后通知保单信息
- * Summary: 权益服务商投保后通知保单信息
- */
+// Description:
+//
+// Description: 权益服务商投保后通知保单信息
+//
+// Summary: 权益服务商投保后通知保单信息
 func (client *Client) NotifyInterestSupplierpolicyEx(request *NotifyInterestSupplierpolicyRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *NotifyInterestSupplierpolicyResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7106,10 +7413,11 @@ func (client *Client) NotifyInterestSupplierpolicyEx(request *NotifyInterestSupp
 	return _result, _err
 }
 
-/**
- * Description: 场景方获取权益链接
- * Summary: 场景方获取权益链接
- */
+// Description:
+//
+// Description: 场景方获取权益链接
+//
+// Summary: 场景方获取权益链接
 func (client *Client) GetInterestUrl(request *GetInterestUrlRequest) (_result *GetInterestUrlResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7122,10 +7430,11 @@ func (client *Client) GetInterestUrl(request *GetInterestUrlRequest) (_result *G
 	return _result, _err
 }
 
-/**
- * Description: 场景方获取权益链接
- * Summary: 场景方获取权益链接
- */
+// Description:
+//
+// Description: 场景方获取权益链接
+//
+// Summary: 场景方获取权益链接
 func (client *Client) GetInterestUrlEx(request *GetInterestUrlRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *GetInterestUrlResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7140,10 +7449,11 @@ func (client *Client) GetInterestUrlEx(request *GetInterestUrlRequest, headers m
 	return _result, _err
 }
 
-/**
- * Description: 场景方订单信息查询
- * Summary: 场景方订单信息查询
- */
+// Description:
+//
+// Description: 场景方订单信息查询
+//
+// Summary: 场景方订单信息查询
 func (client *Client) QueryInterestSceneorder(request *QueryInterestSceneorderRequest) (_result *QueryInterestSceneorderResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7156,10 +7466,11 @@ func (client *Client) QueryInterestSceneorder(request *QueryInterestSceneorderRe
 	return _result, _err
 }
 
-/**
- * Description: 场景方订单信息查询
- * Summary: 场景方订单信息查询
- */
+// Description:
+//
+// Description: 场景方订单信息查询
+//
+// Summary: 场景方订单信息查询
 func (client *Client) QueryInterestSceneorderEx(request *QueryInterestSceneorderRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryInterestSceneorderResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7174,10 +7485,11 @@ func (client *Client) QueryInterestSceneorderEx(request *QueryInterestSceneorder
 	return _result, _err
 }
 
-/**
- * Description: 权益服务商订单状态通知
- * Summary: 权益服务商订单状态通知
- */
+// Description:
+//
+// Description: 权益服务商订单状态通知
+//
+// Summary: 权益服务商订单状态通知
 func (client *Client) NotifyInterestSupplierorder(request *NotifyInterestSupplierorderRequest) (_result *NotifyInterestSupplierorderResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7190,10 +7502,11 @@ func (client *Client) NotifyInterestSupplierorder(request *NotifyInterestSupplie
 	return _result, _err
 }
 
-/**
- * Description: 权益服务商订单状态通知
- * Summary: 权益服务商订单状态通知
- */
+// Description:
+//
+// Description: 权益服务商订单状态通知
+//
+// Summary: 权益服务商订单状态通知
 func (client *Client) NotifyInterestSupplierorderEx(request *NotifyInterestSupplierorderRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *NotifyInterestSupplierorderResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7208,10 +7521,11 @@ func (client *Client) NotifyInterestSupplierorderEx(request *NotifyInterestSuppl
 	return _result, _err
 }
 
-/**
- * Description: 车险线索营销结果接收
- * Summary: 车险线索营销结果接收
- */
+// Description:
+//
+// Description: 车险线索营销结果接收
+//
+// Summary: 车险线索营销结果接收
 func (client *Client) ReceiveLeadMarket(request *ReceiveLeadMarketRequest) (_result *ReceiveLeadMarketResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7224,10 +7538,11 @@ func (client *Client) ReceiveLeadMarket(request *ReceiveLeadMarketRequest) (_res
 	return _result, _err
 }
 
-/**
- * Description: 车险线索营销结果接收
- * Summary: 车险线索营销结果接收
- */
+// Description:
+//
+// Description: 车险线索营销结果接收
+//
+// Summary: 车险线索营销结果接收
 func (client *Client) ReceiveLeadMarketEx(request *ReceiveLeadMarketRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ReceiveLeadMarketResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7242,10 +7557,11 @@ func (client *Client) ReceiveLeadMarketEx(request *ReceiveLeadMarketRequest, hea
 	return _result, _err
 }
 
-/**
- * Description: 营销投保短链获取
- * Summary: 营销投保短链获取
- */
+// Description:
+//
+// Description: 营销投保短链获取
+//
+// Summary: 营销投保短链获取
 func (client *Client) GetMarketingInsureurl(request *GetMarketingInsureurlRequest) (_result *GetMarketingInsureurlResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7258,10 +7574,11 @@ func (client *Client) GetMarketingInsureurl(request *GetMarketingInsureurlReques
 	return _result, _err
 }
 
-/**
- * Description: 营销投保短链获取
- * Summary: 营销投保短链获取
- */
+// Description:
+//
+// Description: 营销投保短链获取
+//
+// Summary: 营销投保短链获取
 func (client *Client) GetMarketingInsureurlEx(request *GetMarketingInsureurlRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *GetMarketingInsureurlResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7276,10 +7593,11 @@ func (client *Client) GetMarketingInsureurlEx(request *GetMarketingInsureurlRequ
 	return _result, _err
 }
 
-/**
- * Description: 营销保单出单信息事件回传
- * Summary: 营销保单出单信息事件回传
- */
+// Description:
+//
+// Description: 营销保单出单信息事件回传
+//
+// Summary: 营销保单出单信息事件回传
 func (client *Client) CallbackMarketingEvent(request *CallbackMarketingEventRequest) (_result *CallbackMarketingEventResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7292,10 +7610,11 @@ func (client *Client) CallbackMarketingEvent(request *CallbackMarketingEventRequ
 	return _result, _err
 }
 
-/**
- * Description: 营销保单出单信息事件回传
- * Summary: 营销保单出单信息事件回传
- */
+// Description:
+//
+// Description: 营销保单出单信息事件回传
+//
+// Summary: 营销保单出单信息事件回传
 func (client *Client) CallbackMarketingEventEx(request *CallbackMarketingEventRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMarketingEventResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7310,10 +7629,11 @@ func (client *Client) CallbackMarketingEventEx(request *CallbackMarketingEventRe
 	return _result, _err
 }
 
-/**
- * Description: 营销退保信息回传
- * Summary: 营销退保事件回传
- */
+// Description:
+//
+// Description: 营销退保信息回传
+//
+// Summary: 营销退保事件回传
 func (client *Client) CallbackMarketingPolicycancel(request *CallbackMarketingPolicycancelRequest) (_result *CallbackMarketingPolicycancelResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7326,10 +7646,11 @@ func (client *Client) CallbackMarketingPolicycancel(request *CallbackMarketingPo
 	return _result, _err
 }
 
-/**
- * Description: 营销退保信息回传
- * Summary: 营销退保事件回传
- */
+// Description:
+//
+// Description: 营销退保信息回传
+//
+// Summary: 营销退保事件回传
 func (client *Client) CallbackMarketingPolicycancelEx(request *CallbackMarketingPolicycancelRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMarketingPolicycancelResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7344,10 +7665,11 @@ func (client *Client) CallbackMarketingPolicycancelEx(request *CallbackMarketing
 	return _result, _err
 }
 
-/**
- * Description: 车险线索查询
- * Summary: 车险线索查询
- */
+// Description:
+//
+// Description: 车险线索查询
+//
+// Summary: 车险线索查询
 func (client *Client) QueryLeadMarket(request *QueryLeadMarketRequest) (_result *QueryLeadMarketResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7360,10 +7682,11 @@ func (client *Client) QueryLeadMarket(request *QueryLeadMarketRequest) (_result 
 	return _result, _err
 }
 
-/**
- * Description: 车险线索查询
- * Summary: 车险线索查询
- */
+// Description:
+//
+// Description: 车险线索查询
+//
+// Summary: 车险线索查询
 func (client *Client) QueryLeadMarketEx(request *QueryLeadMarketRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *QueryLeadMarketResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7378,10 +7701,11 @@ func (client *Client) QueryLeadMarketEx(request *QueryLeadMarketRequest, headers
 	return _result, _err
 }
 
-/**
- * Description: 理想车险事件通知
- * Summary: 理想车险事件通知
- */
+// Description:
+//
+// Description: 理想车险事件通知
+//
+// Summary: 理想车险事件通知
 func (client *Client) NotifyAutoinsuranceEvent(request *NotifyAutoinsuranceEventRequest) (_result *NotifyAutoinsuranceEventResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7394,10 +7718,11 @@ func (client *Client) NotifyAutoinsuranceEvent(request *NotifyAutoinsuranceEvent
 	return _result, _err
 }
 
-/**
- * Description: 理想车险事件通知
- * Summary: 理想车险事件通知
- */
+// Description:
+//
+// Description: 理想车险事件通知
+//
+// Summary: 理想车险事件通知
 func (client *Client) NotifyAutoinsuranceEventEx(request *NotifyAutoinsuranceEventRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *NotifyAutoinsuranceEventResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7412,10 +7737,11 @@ func (client *Client) NotifyAutoinsuranceEventEx(request *NotifyAutoinsuranceEve
 	return _result, _err
 }
 
-/**
- * Description: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
- * Summary: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
- */
+// Description:
+//
+// Description: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
+//
+// Summary: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
 func (client *Client) UploadMktFile(request *UploadMktFileRequest) (_result *UploadMktFileResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7428,10 +7754,11 @@ func (client *Client) UploadMktFile(request *UploadMktFileRequest) (_result *Upl
 	return _result, _err
 }
 
-/**
- * Description: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
- * Summary: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
- */
+// Description:
+//
+// Description: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
+//
+// Summary: 保险营销文件上传，营销链路中涉及到文件上传，均可使用本接口，根据上传的数据类型做区分
 func (client *Client) UploadMktFileEx(request *UploadMktFileRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *UploadMktFileResponse, _err error) {
 	if !tea.BoolValue(util.IsUnset(request.FileObject)) {
 		uploadReq := &CreateAntcloudGatewayxFileUploadRequest{
@@ -7476,10 +7803,11 @@ func (client *Client) UploadMktFileEx(request *UploadMktFileRequest, headers map
 	return _result, _err
 }
 
-/**
- * Description: 保险营销效果回传
- * Summary: 保险营销效果回传
- */
+// Description:
+//
+// Description: 保险营销效果回传
+//
+// Summary: 保险营销效果回传
 func (client *Client) CallbackMktEffect(request *CallbackMktEffectRequest) (_result *CallbackMktEffectResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7492,10 +7820,11 @@ func (client *Client) CallbackMktEffect(request *CallbackMktEffectRequest) (_res
 	return _result, _err
 }
 
-/**
- * Description: 保险营销效果回传
- * Summary: 保险营销效果回传
- */
+// Description:
+//
+// Description: 保险营销效果回传
+//
+// Summary: 保险营销效果回传
 func (client *Client) CallbackMktEffectEx(request *CallbackMktEffectRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMktEffectResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7510,10 +7839,11 @@ func (client *Client) CallbackMktEffectEx(request *CallbackMktEffectRequest, hea
 	return _result, _err
 }
 
-/**
- * Description: 商机数量推送接口
- * Summary: 商机数量接收
- */
+// Description:
+//
+// Description: 商机数量推送接口
+//
+// Summary: 商机数量接收
 func (client *Client) ReceiveBusinessOpportunities(request *ReceiveBusinessOpportunitiesRequest) (_result *ReceiveBusinessOpportunitiesResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7526,10 +7856,11 @@ func (client *Client) ReceiveBusinessOpportunities(request *ReceiveBusinessOppor
 	return _result, _err
 }
 
-/**
- * Description: 商机数量推送接口
- * Summary: 商机数量接收
- */
+// Description:
+//
+// Description: 商机数量推送接口
+//
+// Summary: 商机数量接收
 func (client *Client) ReceiveBusinessOpportunitiesEx(request *ReceiveBusinessOpportunitiesRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ReceiveBusinessOpportunitiesResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -7544,10 +7875,11 @@ func (client *Client) ReceiveBusinessOpportunitiesEx(request *ReceiveBusinessOpp
 	return _result, _err
 }
 
-/**
- * Description: 创建HTTP PUT提交的文件上传
- * Summary: 文件上传创建
- */
+// Description:
+//
+// Description: 创建HTTP PUT提交的文件上传
+//
+// Summary: 文件上传创建
 func (client *Client) CreateAntcloudGatewayxFileUpload(request *CreateAntcloudGatewayxFileUploadRequest) (_result *CreateAntcloudGatewayxFileUploadResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -7560,10 +7892,11 @@ func (client *Client) CreateAntcloudGatewayxFileUpload(request *CreateAntcloudGa
 	return _result, _err
 }
 
-/**
- * Description: 创建HTTP PUT提交的文件上传
- * Summary: 文件上传创建
- */
+// Description:
+//
+// Description: 创建HTTP PUT提交的文件上传
+//
+// Summary: 文件上传创建
 func (client *Client) CreateAntcloudGatewayxFileUploadEx(request *CreateAntcloudGatewayxFileUploadRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CreateAntcloudGatewayxFileUploadResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
