@@ -189,6 +189,38 @@ func (s *Config) SetMaxRequestsPerHost(v int) *Config {
 	return s
 }
 
+// 转化数据条目
+type ConversionDataDTO struct {
+	// 转化目标类型
+	// example:
+	//
+	// FORMBOOK
+	ConversionType *string `json:"conversion_type,omitempty" xml:"conversion_type,omitempty" require:"true"`
+	// 目标转化量
+	// example:
+	//
+	// 100
+	ConversionCount *int64 `json:"conversion_count,omitempty" xml:"conversion_count,omitempty" require:"true"`
+}
+
+func (s ConversionDataDTO) String() string {
+	return tea.Prettify(s)
+}
+
+func (s ConversionDataDTO) GoString() string {
+	return s.String()
+}
+
+func (s *ConversionDataDTO) SetConversionType(v string) *ConversionDataDTO {
+	s.ConversionType = &v
+	return s
+}
+
+func (s *ConversionDataDTO) SetConversionCount(v int64) *ConversionDataDTO {
+	s.ConversionCount = &v
+	return s
+}
+
 // 文件结构
 type FileNode struct {
 	// 可访问的文件链接
@@ -218,6 +250,108 @@ func (s *FileNode) SetUrl(v string) *FileNode {
 
 func (s *FileNode) SetName(v string) *FileNode {
 	s.Name = &v
+	return s
+}
+
+// 媒体统计数据条目
+type StatisticalDataDTO struct {
+	// 项目标识
+	// example:
+	//
+	// 2026072000000138312001
+	Project *string `json:"project,omitempty" xml:"project,omitempty" require:"true"`
+	// 统计维度id
+	// example:
+	//
+	// 2026072000000138312001
+	DimensionId *string `json:"dimension_id,omitempty" xml:"dimension_id,omitempty" require:"true"`
+	// 时间维度
+	// example:
+	//
+	// hour
+	TimePeriod *string `json:"time_period,omitempty" xml:"time_period,omitempty" require:"true"`
+	// 开始时间
+	// example:
+	//
+	// yyyy-MM-dd HH:mm
+	StartTime *string `json:"start_time,omitempty" xml:"start_time,omitempty" require:"true"`
+	// 结束时间
+	// example:
+	//
+	// yyyy-MM-dd HH:mm
+	EndTime *string `json:"end_time,omitempty" xml:"end_time,omitempty" require:"true"`
+	// 花费金额
+	// example:
+	//
+	// 6666.66
+	CostMoney *string `json:"cost_money,omitempty" xml:"cost_money,omitempty" require:"true"`
+	// 曝光量
+	// example:
+	//
+	// 100
+	MediaImpressionCount *int64 `json:"media_impression_count,omitempty" xml:"media_impression_count,omitempty" require:"true"`
+	// 点击量
+	// example:
+	//
+	// 100
+	MediaClickCount *int64 `json:"media_click_count,omitempty" xml:"media_click_count,omitempty" require:"true"`
+	// 目标转化量相关数据
+	// example:
+	//
+	// undefined
+	ConversionDataList []*ConversionDataDTO `json:"conversion_data_list,omitempty" xml:"conversion_data_list,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s StatisticalDataDTO) String() string {
+	return tea.Prettify(s)
+}
+
+func (s StatisticalDataDTO) GoString() string {
+	return s.String()
+}
+
+func (s *StatisticalDataDTO) SetProject(v string) *StatisticalDataDTO {
+	s.Project = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetDimensionId(v string) *StatisticalDataDTO {
+	s.DimensionId = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetTimePeriod(v string) *StatisticalDataDTO {
+	s.TimePeriod = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetStartTime(v string) *StatisticalDataDTO {
+	s.StartTime = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetEndTime(v string) *StatisticalDataDTO {
+	s.EndTime = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetCostMoney(v string) *StatisticalDataDTO {
+	s.CostMoney = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetMediaImpressionCount(v int64) *StatisticalDataDTO {
+	s.MediaImpressionCount = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetMediaClickCount(v int64) *StatisticalDataDTO {
+	s.MediaClickCount = &v
+	return s
+}
+
+func (s *StatisticalDataDTO) SetConversionDataList(v []*ConversionDataDTO) *StatisticalDataDTO {
+	s.ConversionDataList = v
 	return s
 }
 
@@ -1201,6 +1335,317 @@ func (s *NotifyEmbedoemautoinsuranceEventResponse) SetMessage(v string) *NotifyE
 
 func (s *NotifyEmbedoemautoinsuranceEventResponse) SetSuccess(v bool) *NotifyEmbedoemautoinsuranceEventResponse {
 	s.Success = &v
+	return s
+}
+
+type CallbackMktMediastatisticaldataRequest struct {
+	// OAuth模式下的授权token
+	AuthToken *string `json:"auth_token,omitempty" xml:"auth_token,omitempty"`
+	// 请求id
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty" require:"true"`
+	// 项目id
+	ProjectId *string `json:"project_id,omitempty" xml:"project_id,omitempty" require:"true"`
+	// 数据渠道来源，广点通(gdt) / 巨量引擎(oceanengine) / 快手(kuaishou) / 百度(baidu)
+	MediaSource *string `json:"media_source,omitempty" xml:"media_source,omitempty" require:"true"`
+	// 统计维度，区分账号（ACCOUNT） 、广告计划(ADVERTISEMENT) 、 素材（MATERIAL）
+	Dimension *string `json:"dimension,omitempty" xml:"dimension,omitempty" require:"true"`
+	// 统计数据
+	StatisticalDataList []*StatisticalDataDTO `json:"statistical_data_list,omitempty" xml:"statistical_data_list,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s CallbackMktMediastatisticaldataRequest) String() string {
+	return tea.Prettify(s)
+}
+
+func (s CallbackMktMediastatisticaldataRequest) GoString() string {
+	return s.String()
+}
+
+func (s *CallbackMktMediastatisticaldataRequest) SetAuthToken(v string) *CallbackMktMediastatisticaldataRequest {
+	s.AuthToken = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataRequest) SetRequestId(v string) *CallbackMktMediastatisticaldataRequest {
+	s.RequestId = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataRequest) SetProjectId(v string) *CallbackMktMediastatisticaldataRequest {
+	s.ProjectId = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataRequest) SetMediaSource(v string) *CallbackMktMediastatisticaldataRequest {
+	s.MediaSource = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataRequest) SetDimension(v string) *CallbackMktMediastatisticaldataRequest {
+	s.Dimension = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataRequest) SetStatisticalDataList(v []*StatisticalDataDTO) *CallbackMktMediastatisticaldataRequest {
+	s.StatisticalDataList = v
+	return s
+}
+
+type CallbackMktMediastatisticaldataResponse struct {
+	// 请求唯一ID，用于链路跟踪和问题排查
+	ReqMsgId *string `json:"req_msg_id,omitempty" xml:"req_msg_id,omitempty"`
+	// 结果码，一般OK表示调用成功
+	ResultCode *string `json:"result_code,omitempty" xml:"result_code,omitempty"`
+	// 异常信息的文本描述
+	ResultMsg *string `json:"result_msg,omitempty" xml:"result_msg,omitempty"`
+	// 请求id
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty"`
+}
+
+func (s CallbackMktMediastatisticaldataResponse) String() string {
+	return tea.Prettify(s)
+}
+
+func (s CallbackMktMediastatisticaldataResponse) GoString() string {
+	return s.String()
+}
+
+func (s *CallbackMktMediastatisticaldataResponse) SetReqMsgId(v string) *CallbackMktMediastatisticaldataResponse {
+	s.ReqMsgId = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataResponse) SetResultCode(v string) *CallbackMktMediastatisticaldataResponse {
+	s.ResultCode = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataResponse) SetResultMsg(v string) *CallbackMktMediastatisticaldataResponse {
+	s.ResultMsg = &v
+	return s
+}
+
+func (s *CallbackMktMediastatisticaldataResponse) SetRequestId(v string) *CallbackMktMediastatisticaldataResponse {
+	s.RequestId = &v
+	return s
+}
+
+type CallbackMktEffectsimpleRequest struct {
+	// OAuth模式下的授权token
+	AuthToken *string `json:"auth_token,omitempty" xml:"auth_token,omitempty"`
+	// 请求id，每一次请求保持唯一；若重复，则更新原数据；
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty" require:"true"`
+	// 项目ID，待蚂蚁分配
+	ProjectId *string `json:"project_id,omitempty" xml:"project_id,omitempty" require:"true"`
+	// 营销模式，AI_HANGUP_SMS("AI挂短")， AI_OFFICIAL_ACCOUNT("AI公众号"), BPO_WECHAT("BPO企微"), AI_BPO("AI_BPO")
+	MarketingMode *string `json:"marketing_mode,omitempty" xml:"marketing_mode,omitempty" require:"true"`
+	// 投保特征短链
+	InsureShortUrl *string `json:"insure_short_url,omitempty" xml:"insure_short_url,omitempty" require:"true"`
+	// 加密类型：MD5，32位[小]
+	EncryptionType *string `json:"encryption_type,omitempty" xml:"encryption_type,omitempty" require:"true"`
+	// 加密用户标识
+	EncryptedUserId *string `json:"encrypted_user_id,omitempty" xml:"encrypted_user_id,omitempty" require:"true"`
+	// 应以识别当前用户点击投保页面的唯一标识
+	LandingVisitId *string `json:"landing_visit_id,omitempty" xml:"landing_visit_id,omitempty" require:"true"`
+	// 节点类型
+	NodeType *string `json:"node_type,omitempty" xml:"node_type,omitempty" require:"true"`
+	// 节点状态（0-未完成；1-已完成）
+	NodeStatus *string `json:"node_status,omitempty" xml:"node_status,omitempty" require:"true"`
+	// 事件完成时间（yyyy-MM-dd HH:mm:ss）
+	EventTime *string `json:"event_time,omitempty" xml:"event_time,omitempty" require:"true"`
+}
+
+func (s CallbackMktEffectsimpleRequest) String() string {
+	return tea.Prettify(s)
+}
+
+func (s CallbackMktEffectsimpleRequest) GoString() string {
+	return s.String()
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetAuthToken(v string) *CallbackMktEffectsimpleRequest {
+	s.AuthToken = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetRequestId(v string) *CallbackMktEffectsimpleRequest {
+	s.RequestId = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetProjectId(v string) *CallbackMktEffectsimpleRequest {
+	s.ProjectId = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetMarketingMode(v string) *CallbackMktEffectsimpleRequest {
+	s.MarketingMode = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetInsureShortUrl(v string) *CallbackMktEffectsimpleRequest {
+	s.InsureShortUrl = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetEncryptionType(v string) *CallbackMktEffectsimpleRequest {
+	s.EncryptionType = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetEncryptedUserId(v string) *CallbackMktEffectsimpleRequest {
+	s.EncryptedUserId = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetLandingVisitId(v string) *CallbackMktEffectsimpleRequest {
+	s.LandingVisitId = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetNodeType(v string) *CallbackMktEffectsimpleRequest {
+	s.NodeType = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetNodeStatus(v string) *CallbackMktEffectsimpleRequest {
+	s.NodeStatus = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleRequest) SetEventTime(v string) *CallbackMktEffectsimpleRequest {
+	s.EventTime = &v
+	return s
+}
+
+type CallbackMktEffectsimpleResponse struct {
+	// 请求唯一ID，用于链路跟踪和问题排查
+	ReqMsgId *string `json:"req_msg_id,omitempty" xml:"req_msg_id,omitempty"`
+	// 结果码，一般OK表示调用成功
+	ResultCode *string `json:"result_code,omitempty" xml:"result_code,omitempty"`
+	// 异常信息的文本描述
+	ResultMsg *string `json:"result_msg,omitempty" xml:"result_msg,omitempty"`
+	// 请求id，每一次请求保持唯一；
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty"`
+}
+
+func (s CallbackMktEffectsimpleResponse) String() string {
+	return tea.Prettify(s)
+}
+
+func (s CallbackMktEffectsimpleResponse) GoString() string {
+	return s.String()
+}
+
+func (s *CallbackMktEffectsimpleResponse) SetReqMsgId(v string) *CallbackMktEffectsimpleResponse {
+	s.ReqMsgId = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleResponse) SetResultCode(v string) *CallbackMktEffectsimpleResponse {
+	s.ResultCode = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleResponse) SetResultMsg(v string) *CallbackMktEffectsimpleResponse {
+	s.ResultMsg = &v
+	return s
+}
+
+func (s *CallbackMktEffectsimpleResponse) SetRequestId(v string) *CallbackMktEffectsimpleResponse {
+	s.RequestId = &v
+	return s
+}
+
+type ApplyMktserviceproviderAudiencecircleRequest struct {
+	// OAuth模式下的授权token
+	AuthToken *string `json:"auth_token,omitempty" xml:"auth_token,omitempty"`
+	// 请求id，每一次请求保持唯一；
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty" require:"true"`
+	// 项目ID，待蚂蚁分配
+	ProjectId *string `json:"project_id,omitempty" xml:"project_id,omitempty" require:"true"`
+	// 业务场景标识
+	BizScene *string `json:"biz_scene,omitempty" xml:"biz_scene,omitempty" require:"true"`
+	// 加密类型，MD5 32位小写
+	EncryptionType *string `json:"encryption_type,omitempty" xml:"encryption_type,omitempty" require:"true"`
+	// 加密用户标识
+	EncryptedUserIds []*string `json:"encrypted_user_ids,omitempty" xml:"encrypted_user_ids,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s ApplyMktserviceproviderAudiencecircleRequest) String() string {
+	return tea.Prettify(s)
+}
+
+func (s ApplyMktserviceproviderAudiencecircleRequest) GoString() string {
+	return s.String()
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleRequest) SetAuthToken(v string) *ApplyMktserviceproviderAudiencecircleRequest {
+	s.AuthToken = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleRequest) SetRequestId(v string) *ApplyMktserviceproviderAudiencecircleRequest {
+	s.RequestId = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleRequest) SetProjectId(v string) *ApplyMktserviceproviderAudiencecircleRequest {
+	s.ProjectId = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleRequest) SetBizScene(v string) *ApplyMktserviceproviderAudiencecircleRequest {
+	s.BizScene = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleRequest) SetEncryptionType(v string) *ApplyMktserviceproviderAudiencecircleRequest {
+	s.EncryptionType = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleRequest) SetEncryptedUserIds(v []*string) *ApplyMktserviceproviderAudiencecircleRequest {
+	s.EncryptedUserIds = v
+	return s
+}
+
+type ApplyMktserviceproviderAudiencecircleResponse struct {
+	// 请求唯一ID，用于链路跟踪和问题排查
+	ReqMsgId *string `json:"req_msg_id,omitempty" xml:"req_msg_id,omitempty"`
+	// 结果码，一般OK表示调用成功
+	ResultCode *string `json:"result_code,omitempty" xml:"result_code,omitempty"`
+	// 异常信息的文本描述
+	ResultMsg *string `json:"result_msg,omitempty" xml:"result_msg,omitempty"`
+	// 请求id，每一次请求保持唯一；
+	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty"`
+}
+
+func (s ApplyMktserviceproviderAudiencecircleResponse) String() string {
+	return tea.Prettify(s)
+}
+
+func (s ApplyMktserviceproviderAudiencecircleResponse) GoString() string {
+	return s.String()
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleResponse) SetReqMsgId(v string) *ApplyMktserviceproviderAudiencecircleResponse {
+	s.ReqMsgId = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleResponse) SetResultCode(v string) *ApplyMktserviceproviderAudiencecircleResponse {
+	s.ResultCode = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleResponse) SetResultMsg(v string) *ApplyMktserviceproviderAudiencecircleResponse {
+	s.ResultMsg = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleResponse) SetRequestId(v string) *ApplyMktserviceproviderAudiencecircleResponse {
+	s.RequestId = &v
 	return s
 }
 
@@ -6224,7 +6669,7 @@ func (client *Client) DoRequest(version *string, action *string, protocol *strin
 				"req_msg_id":       antchainutil.GetNonce(),
 				"access_key":       client.AccessKeyId,
 				"base_sdk_version": tea.String("TeaSDK-2.0"),
-				"sdk_version":      tea.String("1.12.49"),
+				"sdk_version":      tea.String("1.12.56"),
 				"_prod_code":       tea.String("INSURANCE_SAAS"),
 				"_prod_channel":    tea.String("undefined"),
 			}
@@ -6392,9 +6837,9 @@ func (client *Client) GetAasButleragentChaturlEx(request *GetAasButleragentChatu
 
 // Description:
 //
-// Description: 保险营销效果回传接口——直播通道
+// Description: 保险营销效果回传接口——媒体
 //
-// Summary: 保险营销效果回传接口——直播通道
+// Summary: 保险营销效果回传接口——媒体
 func (client *Client) CallbackMktLiveeffect(request *CallbackMktLiveeffectRequest) (_result *CallbackMktLiveeffectResponse, _err error) {
 	runtime := &util.RuntimeOptions{}
 	headers := make(map[string]*string)
@@ -6409,9 +6854,9 @@ func (client *Client) CallbackMktLiveeffect(request *CallbackMktLiveeffectReques
 
 // Description:
 //
-// Description: 保险营销效果回传接口——直播通道
+// Description: 保险营销效果回传接口——媒体
 //
-// Summary: 保险营销效果回传接口——直播通道
+// Summary: 保险营销效果回传接口——媒体
 func (client *Client) CallbackMktLiveeffectEx(request *CallbackMktLiveeffectRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMktLiveeffectResponse, _err error) {
 	_err = util.ValidateModel(request)
 	if _err != nil {
@@ -6527,6 +6972,114 @@ func (client *Client) NotifyEmbedoemautoinsuranceEventEx(request *NotifyEmbedoem
 	}
 	_result = &NotifyEmbedoemautoinsuranceEventResponse{}
 	_body, _err := client.DoRequest(tea.String("1.0"), tea.String("antcloud.insurance.embedoemautoinsurance.event.notify"), tea.String("HTTPS"), tea.String("POST"), tea.String("/gateway.do"), tea.ToMap(request), headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_err = tea.Convert(_body, &_result)
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 媒体点击统计数据回传
+//
+// Summary: 媒体点击统计数据回传
+func (client *Client) CallbackMktMediastatisticaldata(request *CallbackMktMediastatisticaldataRequest) (_result *CallbackMktMediastatisticaldataResponse, _err error) {
+	runtime := &util.RuntimeOptions{}
+	headers := make(map[string]*string)
+	_result = &CallbackMktMediastatisticaldataResponse{}
+	_body, _err := client.CallbackMktMediastatisticaldataEx(request, headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = _body
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 媒体点击统计数据回传
+//
+// Summary: 媒体点击统计数据回传
+func (client *Client) CallbackMktMediastatisticaldataEx(request *CallbackMktMediastatisticaldataRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMktMediastatisticaldataResponse, _err error) {
+	_err = util.ValidateModel(request)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = &CallbackMktMediastatisticaldataResponse{}
+	_body, _err := client.DoRequest(tea.String("1.0"), tea.String("antcloud.insurance.mkt.mediastatisticaldata.callback"), tea.String("HTTPS"), tea.String("POST"), tea.String("/gateway.do"), tea.ToMap(request), headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_err = tea.Convert(_body, &_result)
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 营销效果节点数据（简版）
+//
+// Summary: 营销效果节点数据（简版）
+func (client *Client) CallbackMktEffectsimple(request *CallbackMktEffectsimpleRequest) (_result *CallbackMktEffectsimpleResponse, _err error) {
+	runtime := &util.RuntimeOptions{}
+	headers := make(map[string]*string)
+	_result = &CallbackMktEffectsimpleResponse{}
+	_body, _err := client.CallbackMktEffectsimpleEx(request, headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = _body
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 营销效果节点数据（简版）
+//
+// Summary: 营销效果节点数据（简版）
+func (client *Client) CallbackMktEffectsimpleEx(request *CallbackMktEffectsimpleRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *CallbackMktEffectsimpleResponse, _err error) {
+	_err = util.ValidateModel(request)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = &CallbackMktEffectsimpleResponse{}
+	_body, _err := client.DoRequest(tea.String("1.0"), tea.String("antcloud.insurance.mkt.effectsimple.callback"), tea.String("HTTPS"), tea.String("POST"), tea.String("/gateway.do"), tea.ToMap(request), headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_err = tea.Convert(_body, &_result)
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 保险营销服务商人群圈选
+//
+// Summary: 保险营销服务商人群圈选
+func (client *Client) ApplyMktserviceproviderAudiencecircle(request *ApplyMktserviceproviderAudiencecircleRequest) (_result *ApplyMktserviceproviderAudiencecircleResponse, _err error) {
+	runtime := &util.RuntimeOptions{}
+	headers := make(map[string]*string)
+	_result = &ApplyMktserviceproviderAudiencecircleResponse{}
+	_body, _err := client.ApplyMktserviceproviderAudiencecircleEx(request, headers, runtime)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = _body
+	return _result, _err
+}
+
+// Description:
+//
+// Description: 保险营销服务商人群圈选
+//
+// Summary: 保险营销服务商人群圈选
+func (client *Client) ApplyMktserviceproviderAudiencecircleEx(request *ApplyMktserviceproviderAudiencecircleRequest, headers map[string]*string, runtime *util.RuntimeOptions) (_result *ApplyMktserviceproviderAudiencecircleResponse, _err error) {
+	_err = util.ValidateModel(request)
+	if _err != nil {
+		return _result, _err
+	}
+	_result = &ApplyMktserviceproviderAudiencecircleResponse{}
+	_body, _err := client.DoRequest(tea.String("1.0"), tea.String("antcloud.insurance.mktserviceprovider.audiencecircle.apply"), tea.String("HTTPS"), tea.String("POST"), tea.String("/gateway.do"), tea.ToMap(request), headers, runtime)
 	if _err != nil {
 		return _result, _err
 	}
