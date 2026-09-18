@@ -1438,7 +1438,7 @@ type CallbackMktEffectsimpleRequest struct {
 	// 项目ID，待蚂蚁分配
 	ProjectId *string `json:"project_id,omitempty" xml:"project_id,omitempty" require:"true"`
 	// 营销模式，AI_HANGUP_SMS("AI挂短")， AI_OFFICIAL_ACCOUNT("AI公众号"), BPO_WECHAT("BPO企微"), AI_BPO("AI_BPO")
-	MarketingMode *string `json:"marketing_mode,omitempty" xml:"marketing_mode,omitempty" require:"true"`
+	MarketingMode *string `json:"marketing_mode,omitempty" xml:"marketing_mode,omitempty"`
 	// 投保特征短链
 	InsureShortUrl *string `json:"insure_short_url,omitempty" xml:"insure_short_url,omitempty" require:"true"`
 	// 加密类型：MD5，32位[小]
@@ -1619,6 +1619,8 @@ type ApplyMktserviceproviderAudiencecircleResponse struct {
 	ResultMsg *string `json:"result_msg,omitempty" xml:"result_msg,omitempty"`
 	// 请求id，每一次请求保持唯一；
 	RequestId *string `json:"request_id,omitempty" xml:"request_id,omitempty"`
+	// 批次号
+	BatchNo *string `json:"batch_no,omitempty" xml:"batch_no,omitempty"`
 }
 
 func (s ApplyMktserviceproviderAudiencecircleResponse) String() string {
@@ -1646,6 +1648,11 @@ func (s *ApplyMktserviceproviderAudiencecircleResponse) SetResultMsg(v string) *
 
 func (s *ApplyMktserviceproviderAudiencecircleResponse) SetRequestId(v string) *ApplyMktserviceproviderAudiencecircleResponse {
 	s.RequestId = &v
+	return s
+}
+
+func (s *ApplyMktserviceproviderAudiencecircleResponse) SetBatchNo(v string) *ApplyMktserviceproviderAudiencecircleResponse {
+	s.BatchNo = &v
 	return s
 }
 
@@ -6201,7 +6208,7 @@ type CallbackMktEffectRequest struct {
 	// AI_OFFICIAL_ACCOUNT("AI公众号"),
 	// BPO_WECHAT("BPO企微"),
 	// AI_BPO("AI_BPO")
-	MarketingMode *string `json:"marketing_mode,omitempty" xml:"marketing_mode,omitempty" require:"true" maxLength:"64"`
+	MarketingMode *string `json:"marketing_mode,omitempty" xml:"marketing_mode,omitempty" maxLength:"64"`
 	// 投保特征短链
 	InsureShortUrl *string `json:"insure_short_url,omitempty" xml:"insure_short_url,omitempty" maxLength:"256"`
 	// 加密类型：MD5，32位[小]
@@ -6669,7 +6676,7 @@ func (client *Client) DoRequest(version *string, action *string, protocol *strin
 				"req_msg_id":       antchainutil.GetNonce(),
 				"access_key":       client.AccessKeyId,
 				"base_sdk_version": tea.String("TeaSDK-2.0"),
-				"sdk_version":      tea.String("1.12.56"),
+				"sdk_version":      tea.String("1.12.59"),
 				"_prod_code":       tea.String("INSURANCE_SAAS"),
 				"_prod_channel":    tea.String("undefined"),
 			}
