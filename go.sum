@@ -12,8 +12,8 @@ github.com/alibabacloud-go/tea-rpc-utils v1.1.2 h1:ZTfFREnP2q9D49T2J/1jYYOndepGd
 github.com/alibabacloud-go/tea-rpc-utils v1.1.2/go.mod h1:V5HdNi6Xdn0JMpgVhQ19vsFAS51tydr7BqcJtuXH1Yw=
 github.com/alibabacloud-go/tea-utils v1.3.8 h1:L+10Gwm25Ma2dEf8DiPODPSj887ZIiLlNNSGak6TKJM=
 github.com/alibabacloud-go/tea-utils v1.3.8/go.mod h1:EI/o33aBfj3hETm4RLiAxF/ThQdSngxrpF8rKUDJjPE=
-github.com/alibabacloud-go/tea-utils/v2 v2.0.8 h1:3Xc2aQY8g6gXoNufwOXdLk8a9Zeks4FewXH1wlV69gI=
-github.com/alibabacloud-go/tea-utils/v2 v2.0.8/go.mod h1:qxn986l+q33J5VkialKMqT/TTs3E+U9MJpd001iWQ9I=
+github.com/alibabacloud-go/tea-utils/v2 v2.0.10 h1:3BEGvcB9wBDHCvt7Zn0MEudkDroYdboYjJS45A7FlZY=
+github.com/alibabacloud-go/tea-utils/v2 v2.0.10/go.mod h1:qxn986l+q33J5VkialKMqT/TTs3E+U9MJpd001iWQ9I=
 github.com/antchain-openapi-sdk-go/antchain-util v0.0.7 h1:aa6GLaNNE3HryG71Kxjza4Tu9EZQcZv0G/v+q3By4gw=
 github.com/antchain-openapi-sdk-go/antchain-util v0.0.7/go.mod h1:pi99Uu97pcsfyUNaaMcABSQS3HjuY+066s/3iDgVJSk=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
